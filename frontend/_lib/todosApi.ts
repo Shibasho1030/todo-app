@@ -89,7 +89,7 @@ export async function updateTodo(
       // todo: params,
       title: params.title,
       content: params.content,
-      complete: params.completed,
+      completed: params.completed,
       due_date: params.due_date,
     }),
   });

@@ -18,6 +18,7 @@ function Page() {
 
     await signup({ name, email, password, passwordConfirmation });
     router.push("/todos");
+    router.refresh();
   }
 
   return (

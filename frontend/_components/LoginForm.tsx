@@ -16,6 +16,7 @@ function LoginForm() {
 
     await login({ email, password });
     router.push("/todos");
+    router.refresh();
   }
 
   return (
@@ -27,6 +28,7 @@ function LoginForm() {
           name="email"
           type="email"
           placeholder="メールアドレス"
+          defaultValue="guest@example.com"
           className="w-full rounded border p-2"
         />
 
@@ -34,6 +36,7 @@ function LoginForm() {
           name="password"
           type="password"
           placeholder="パスワード"
+          defaultValue="hogehoge"
           className="w-full rounded border p-2"
         />
 

@@ -27,7 +27,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const me = await getCurrentUser();
+  let me = null;
+  try {
+    me = await getCurrentUser();
+  } catch {}
 
   return (
     <html
@@ -35,7 +38,7 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-[#DDE6ED]">
-        <Header name={me.name} />
+        <Header name={me?.name} />
         <main className="mx-auto w-full max-w-xl flex-1">{children}</main>
       </body>
     </html>

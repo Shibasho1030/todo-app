@@ -4,13 +4,14 @@ import { logout } from "@/_lib/sessionApi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function Header({ name }: { name: string }) {
+function Header({ name }: { name: string | undefined }) {
   const router = useRouter();
 
   async function handleLogout() {
     try {
       await logout();
       router.push("/");
+      router.refresh();
     } catch {
       alert("ログアウトに失敗しました");
     }
@@ -19,26 +20,45 @@ function Header({ name }: { name: string }) {
   return (
     <header className="border-b p-4">
       <div className="mx-auto flex items-center justify-between gap-5">
-        <Link href="/" className="font-bold">
-          Todo App
-        </Link>
+        <div className="flex gap-4 font-bold">
+          <Link href="/" className="font-bold">
+            Todo App
+          </Link>
+          {name ? <p>{name}さんでログイン中</p> : ""}
+        </div>
 
         <nav className="flex gap-5">
-          <Link href="/todos" className="font-semibold">
-            Todos
-          </Link>
-          <Link href="/login" className="font-semibold">
-            ログイン
-          </Link>
-          <Link href="/signup" className="font-semibold">
-            新規登録
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="font-semibold cursor-pointer"
-          >
-            ログアウト
-          </button>
+          {name ? (
+            <Link href="/todos" className="font-semibold">
+              Todos
+            </Link>
+          ) : (
+            ""
+          )}
+          {name ? (
+            ""
+          ) : (
+            <Link href="/login" className="font-semibold">
+              ログイン
+            </Link>
+          )}
+          {name ? (
+            ""
+          ) : (
+            <Link href="/signup" className="font-semibold">
+              新規登録
+            </Link>
+          )}
+          {name ? (
+            <button
+              onClick={handleLogout}
+              className="font-semibold cursor-pointer"
+            >
+              ログアウト
+            </button>
+          ) : (
+            ""
+          )}
         </nav>
       </div>
     </header>
