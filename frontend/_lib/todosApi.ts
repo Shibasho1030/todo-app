@@ -27,7 +27,7 @@ export async function getTodos(): Promise<Todo[]> {
 
   const data = await res.json();
 
-  if (!res.ok) throw new Error(data.error ?? "Todo一覧の取得に失敗しました");
+  if (!res.ok) throw new Error(data.error ?? "Todo一覧の取得に失敗しました。");
 
   return data;
 }
@@ -44,7 +44,7 @@ export async function getTodo(id: number): Promise<Todo> {
 
   const data = await res.json();
 
-  if (!res.ok) throw new Error(data.error ?? "Todoの取得に失敗しました");
+  if (!res.ok) throw new Error(data.error ?? "Todoの取得に失敗しました。");
 
   return data;
 }
@@ -68,7 +68,7 @@ export async function createTodo(params: CreateTodoParams): Promise<Todo> {
   const data = await res.json();
 
   if (!res.ok)
-    throw new Error(data.errors?.join(", ") ?? "Todo作成に失敗しました");
+    throw new Error(data.errors?.join(", ") ?? "Todo作成に失敗しました。");
 
   return data;
 }
@@ -77,30 +77,41 @@ export async function updateTodo(
   id: number,
   params: UpdateTodoParams,
 ): Promise<Todo> {
+  const cookieStore = await cookies();
   const res = await fetch(`${API_BASE_URL}/todos/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      Cookie: cookieStore.toString(),
     },
-    credentials: "include",
+    // credentials: "include",
     body: JSON.stringify({
-      todo: params,
+      // todo: params,
+      title: params.title,
+      content: params.content,
+      complete: params.completed,
+      due_date: params.due_date,
     }),
   });
 
   const data = await res.json();
 
   if (!res.ok)
-    throw new Error(data.errors?.join(", ") ?? "Todo更新に失敗しました");
+    throw new Error(data.errors?.join(", ") ?? "Todo更新に失敗しました。");
 
   return data;
 }
 
 export async function deleteTodo(id: number): Promise<void> {
+  const cookieStore = await cookies();
   const res = await fetch(`${API_BASE_URL}/todos/${id}`, {
     method: "DELETE",
-    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookieStore.toString(),
+    },
+    // credentials: "include",
   });
 
-  if (!res.ok) throw new Error("Todo削除に失敗しました");
+  if (!res.ok) throw new Error("Todo削除に失敗しました。");
 }

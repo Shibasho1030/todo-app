@@ -1,5 +1,4 @@
-"use client";
-
+import { deleteTodoAction } from "@/_lib/actions";
 import { Todo } from "@/helper/types";
 import Link from "next/link";
 
@@ -22,9 +21,16 @@ function TodosItem({ todo }: TodoProps) {
           編集
         </Link>
 
-        <button className="rounded bg-red-500 px-2 py-1 md:px-4 md:py-2 text-sm font-bold text-[#DDE6ED] hover:bg-red-600 cursor-pointer">
-          削除
-        </button>
+        <form action={deleteTodoAction}>
+          <input type="hidden" name="id" value={todo.id} />
+
+          <button
+            type="submit"
+            className="rounded bg-red-500 px-2 py-1 md:px-4 md:py-2 text-sm font-bold text-[#DDE6ED] hover:bg-red-600 cursor-pointer"
+          >
+            削除
+          </button>
+        </form>
       </div>
     </li>
   );

@@ -6,10 +6,10 @@ export async function getCurrentUser(): Promise<User> {
   const cookieStore = await cookies();
   const res = await fetch(`${API_BASE_URL}/me`, {
     method: "GET",
-    // credentials: "include",
     headers: {
       Cookie: cookieStore.toString(),
     },
+    // credentials: "include",
     cache: "no-store",
   });
 

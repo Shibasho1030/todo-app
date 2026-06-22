@@ -1,6 +1,7 @@
 "use server";
 
-import { createTodo } from "./todosApi";
+import { revalidatePath } from "next/cache";
+import { createTodo, deleteTodo, updateTodo } from "./todosApi";
 import { redirect } from "next/navigation";
 
 /* cookieの問題でclientコンポーネントからしかApiを叩けなかったため削除
@@ -30,4 +31,20 @@ export async function createTodoAction(formData: FormData) {
 
   await createTodo({ title, content, due_date });
   redirect("/todos");
+}
+
+export async function updateTodoAction(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const title = String(formData.get("title"));
+  const content = String(formData.get("content"));
+  const due_date = String(formData.get("due_date"));
+  const completed = formData.get("completed") === "true";
+  await updateTodo(id, { title, content, due_date, completed });
+  redirect(`/todos/${id}`);
+}
+
+export async function deleteTodoAction(formData: FormData) {
+  const id = Number(formData.get("id"));
+  await deleteTodo(id);
+  revalidatePath("/todos");
 }

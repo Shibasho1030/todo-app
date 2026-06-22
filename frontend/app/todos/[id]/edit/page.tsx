@@ -1,4 +1,4 @@
-import { createTodoAction } from "@/_lib/actions";
+import { updateTodoAction } from "@/_lib/actions";
 import { getTodo } from "@/_lib/todosApi";
 
 async function Page({ params }: { params: { id: string } }) {
@@ -7,8 +7,10 @@ async function Page({ params }: { params: { id: string } }) {
 
   return (
     <div className="mx-auto">
-      <h1 className="mt-4 mb-8 text-2xl font-bold">Todo 新規追加</h1>
-      <form action={createTodoAction} className="space-y-6">
+      <h1 className="mt-4 mb-8 text-2xl font-bold">Todo 編集</h1>
+      <form action={updateTodoAction} className="space-y-6">
+        <input type="hidden" name="id" value={id} />
+
         <label htmlFor="title" className="block font-bold mb-2">
           タイトル
         </label>
@@ -27,40 +29,39 @@ async function Page({ params }: { params: { id: string } }) {
           id="content"
           name="content"
           rows={4}
-          defaultValue={todo.content}
+          defaultValue={todo.content ?? ""}
           className="w-full rounded border px-3 py-2"
         />
 
-        <label htmlFor="due-date" className="block font-bold mb-2">
+        <label htmlFor="due_date" className="block font-bold mb-2">
           予定日
         </label>
         <input
           id="due_date"
           name="due_date"
           type="date"
-          defaultValue={todo.due_date}
+          defaultValue={todo.due_date ?? ""}
           className="w-full rounded border px-3 py-2"
         />
 
         <label htmlFor="completed" className="block font-bold mb-2">
-          進捗状況
+          完了状態
         </label>
         <select
           id="completed"
           name="completed"
-          type="completed"
-          defaultValue={todo.completed}
+          defaultValue={String(todo.completed) ?? "false"}
           className="w-full rounded border px-3 py-2"
         >
-          <option value={true}>完了</option>
-          <option value={false}>未完了</option>
+          <option value="true">完了</option>
+          <option value="false">未完了</option>
         </select>
 
         <button
           type="submit"
           className="rounded border block px-3 py-2 text-[#DDE6ED] bg-[#27374D] hover:bg-[#526D82]"
         >
-          追加
+          更新
         </button>
       </form>
     </div>
