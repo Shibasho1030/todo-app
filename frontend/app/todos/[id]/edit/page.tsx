@@ -1,7 +1,7 @@
 import { updateTodoAction } from "@/_lib/actions";
 import { getTodo } from "@/_lib/todosApi";
 
-async function Page({ params }: { params: { id: string } }) {
+async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const todo = await getTodo(Number(id));
 

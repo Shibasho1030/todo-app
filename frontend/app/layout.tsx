@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/_components/Header";
 import { getCurrentUser } from "@/_lib/getUsersApi";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -33,10 +22,7 @@ export default async function RootLayout({
   } catch {}
 
   return (
-    <html
-      lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="ja" className={`h-full antialiased`}>
       <body className="min-h-screen flex flex-col bg-[#DDE6ED]">
         <Header name={me?.name} />
         <main className="mx-auto w-full max-w-xl flex-1">{children}</main>

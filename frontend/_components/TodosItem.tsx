@@ -15,6 +15,13 @@ function TodosItem({ todo }: TodoProps) {
       </Link>
       <div className="flex gap-2">
         <Link
+          href={`/todos/${todo.id}`}
+          className="rounded bg-sky-500 px-2 py-1 md:px-4 md:py-2 text-sm font-bold text-[#DDE6ED] hover:bg-sky-600 cursor-pointer"
+        >
+          詳細
+        </Link>
+
+        <Link
           href={`/todos/${todo.id}/edit`}
           className="rounded bg-green-500 px-2 py-1 md:px-4 md:py-2 text-sm font-bold text-[#DDE6ED] hover:bg-green-600 cursor-pointer"
         >

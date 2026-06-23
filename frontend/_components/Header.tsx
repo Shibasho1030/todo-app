@@ -21,10 +21,14 @@ function Header({ name }: { name: string | undefined }) {
     <header className="border-b p-4">
       <div className="mx-auto flex items-center justify-between gap-5">
         <div className="flex gap-4 font-bold">
-          <Link href="/" className="font-bold">
+          <Link href="/" className="font-bold text-xl">
             Todo App
           </Link>
-          {name ? <p>{name}さんでログイン中</p> : ""}
+          {name ? (
+            <p className="flex items-end text-xs">{name}さんでログイン中</p>
+          ) : (
+            ""
+          )}
         </div>
 
         <nav className="flex gap-5">

@@ -1,17 +1,16 @@
-import { useFormStatus } from "react-dom";
+"use client";
 
 type SubmitButtonProps = {
   type: "signup" | "login";
+  pending: boolean;
 };
 
-function SubmitButton({ type }: SubmitButtonProps) {
-  const { pending } = useFormStatus();
-
+function SubmitButton({ type, pending }: SubmitButtonProps) {
   return (
     <button
       type="submit"
       disabled={pending}
-      className="w-full rounded bg-blue-600 p-2 text-white disabled:opacity-50"
+      className={`rounded bg-[#27374D] p-2 text-[#DDE6ED] ${type === "signup" ? "px-3" : ""}`}
     >
       {type === "signup" && (pending ? "登録中..." : "登録")}
       {type === "login" && (pending ? "ログイン中..." : "ログイン")}

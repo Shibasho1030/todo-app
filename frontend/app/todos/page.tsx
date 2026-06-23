@@ -7,8 +7,6 @@ export const metadata = {
 
 async function Page() {
   const todos = await getTodos();
-  console.log("start.........................................");
-  console.log(todos);
   return <TodosList todos={todos} />;
 }
 

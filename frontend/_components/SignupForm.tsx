@@ -3,13 +3,15 @@
 import SubmitButton from "./SubmitButton";
 import { useRouter } from "next/navigation";
 import { signup } from "@/_lib/usersApi";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 function Page() {
   const router = useRouter();
+  const [pending, setPending] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setPending(true);
     const formData = new FormData(e.currentTarget);
     const name = String(formData.get("email"));
     const email = String(formData.get("email"));
@@ -17,6 +19,8 @@ function Page() {
     const passwordConfirmation = String(formData.get("passwordConfirmation"));
 
     await signup({ name, email, password, passwordConfirmation });
+
+    setPending(false);
     router.push("/todos");
     router.refresh();
   }
@@ -53,7 +57,7 @@ function Page() {
           className="w-full rounded border p-2"
         />
 
-        <SubmitButton type="signup" />
+        <SubmitButton type="signup" pending={pending} />
       </form>
     </div>
   );
