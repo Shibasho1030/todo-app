@@ -13,7 +13,7 @@ function Page() {
     e.preventDefault();
     setPending(true);
     const formData = new FormData(e.currentTarget);
-    const name = String(formData.get("email"));
+    const name = String(formData.get("name"));
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
     const passwordConfirmation = String(formData.get("passwordConfirmation"));

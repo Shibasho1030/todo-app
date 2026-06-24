@@ -52,13 +52,13 @@ async function Page({ params }: { params: Promise<{ id: string }> }) {
       <div className="flex gap-3">
         <Link
           href={`/todos/${id}/edit`}
-          className="border px-3 py-2 mt-4 bg-[#27374D] text-[#DDE6ED] rounded"
+          className="border px-3 py-2 mt-4 bg-[#27374D] text-[#DDE6ED] rounded hover:bg-[#526D82]"
         >
           編集
         </Link>
         <Link
-          href={`/todos/${id}/edit`}
-          className="border px-3 py-2 mt-4 rounded"
+          href={`/todos`}
+          className="border px-3 py-2 mt-4 rounded hover:bg-[#9DB2BF]"
         >
           戻る
         </Link>

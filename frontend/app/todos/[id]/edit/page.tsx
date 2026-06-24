@@ -1,5 +1,6 @@
 import { updateTodoAction } from "@/_lib/actions";
 import { getTodo } from "@/_lib/todosApi";
+import Link from "next/link";
 
 async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -57,12 +58,20 @@ async function Page({ params }: { params: Promise<{ id: string }> }) {
           <option value="false">未完了</option>
         </select>
 
-        <button
-          type="submit"
-          className="rounded border block px-3 py-2 text-[#DDE6ED] bg-[#27374D] hover:bg-[#526D82]"
-        >
-          更新
-        </button>
+        <div className="space-x-2">
+          <button
+            type="submit"
+            className="rounded border px-3 py-2 text-[#DDE6ED] bg-[#27374D] hover:bg-[#526D82]"
+          >
+            更新
+          </button>
+          <Link
+            href={`/todos`}
+            className="border px-3 py-2 mt-4 rounded hover:bg-[#9DB2BF]"
+          >
+            戻る
+          </Link>
+        </div>
       </form>
     </div>
   );

@@ -25,7 +25,7 @@ function Header({ name }: { name: string | undefined }) {
             Todo App
           </Link>
           {name ? (
-            <p className="flex items-end text-xs">{name}さんでログイン中</p>
+            <p className="flex items-end text-xs">{name}でログイン中</p>
           ) : (
             ""
           )}
