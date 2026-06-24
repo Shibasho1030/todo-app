@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  root to: proc {
+    [
+      200,
+      { "Content-Type" => "application/json" },
+      ['{"status":"ok","message":"Rails API is running"}']
+    ]
+  }
+
+  
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]
