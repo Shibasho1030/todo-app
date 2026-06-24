@@ -20,7 +20,8 @@
 
 allowed_origins = ENV.fetch(
   "FRONTEND_URL",
-  "http://localhost:3000"
+  # "http://localhost:3000"
+  "https://todo-app-shiba1.vercel.app"
 ).split(",").map(&:strip)
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
