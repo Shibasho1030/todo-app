@@ -33,9 +33,21 @@ export async function DELETE(req: NextRequest) {
     cache: "no-store",
   });
 
-  const res = NextResponse.json(null, {
-    status: railsRes.status,
+  const res = new NextResponse(null, {
+    status: railsRes.ok ? 204 : railsRes.status,
   });
+
+  if (railsRes.ok) {
+    // Rails 側の Set-Cookie だけでは Vercel ドメインの Cookie が消えないことがある
+    res.cookies.set("_backend_session", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      path: "/",
+      maxAge: 0,
+    });
+    return res;
+  }
 
   return forwardSetCookies(railsRes, res);
 }
