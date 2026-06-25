@@ -1,3 +1,4 @@
+import { forwardSetCookies } from "@/_lib/forwardSetCookies";
 import { NextRequest, NextResponse } from "next/server";
 
 const API_BASE_URL = process.env.API_BASE_URL!;
@@ -20,13 +21,7 @@ export async function POST(req: NextRequest) {
     status: railsRes.status,
   });
 
-  const setCookie = railsRes.headers.get("set-cookie");
-
-  if (setCookie) {
-    res.headers.append("set-cookie", setCookie);
-  }
-
-  return res;
+  return forwardSetCookies(railsRes, res);
 }
 
 export async function DELETE(req: NextRequest) {
@@ -42,11 +37,5 @@ export async function DELETE(req: NextRequest) {
     status: railsRes.status,
   });
 
-  const setCookie = railsRes.headers.get("set-cookie");
-
-  if (setCookie) {
-    res.headers.append("set-cookie", setCookie);
-  }
-
-  return res;
+  return forwardSetCookies(railsRes, res);
 }

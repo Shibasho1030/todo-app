@@ -1,7 +1,9 @@
+import { requireAuth } from "@/_lib/requireAuth";
 import { getTodo } from "@/_lib/todosApi";
 import Link from "next/link";
 
 async function Page({ params }: { params: Promise<{ id: string }> }) {
+  await requireAuth();
   const { id } = await params;
   const todo = await getTodo(Number(id));
   return (

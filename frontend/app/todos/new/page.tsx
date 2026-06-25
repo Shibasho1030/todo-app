@@ -1,6 +1,8 @@
 import { createTodoAction } from "@/_lib/actions";
+import { requireAuth } from "@/_lib/requireAuth";
 
-function Page() {
+async function Page() {
+  await requireAuth();
   return (
     <div className="mx-auto">
       <h1 className="mt-4 mb-8 text-2xl font-bold">Todo 新規追加</h1>
