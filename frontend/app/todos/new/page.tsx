@@ -27,7 +27,7 @@ async function Page() {
           className="w-full rounded border px-3 py-2"
         />
 
-        <label htmlFor="due-date" className="block font-bold mb-2">
+        <label htmlFor="due_date" className="block font-bold mb-2">
           予定日
         </label>
         <input

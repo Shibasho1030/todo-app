@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createTodo, deleteTodo, updateTodo } from "./todosApi";
 import { redirect } from "next/navigation";
 
-/* cookieの問題でclientコンポーネントからしか、Apiを叩けなかったため削除
+/* cookieの問題でclientコンポーネントからしか、Apiを叩けなかったため削除 => Railsから返ったCookieをブラウザへ渡す処理がないため
 export async function signupAction(formData: FormData) {
   const name = String(formData.get("name"));
   const email = String(formData.get("email"));
