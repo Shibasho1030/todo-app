@@ -52,3 +52,10 @@ export async function deleteTodoAction(formData: FormData) {
   revalidatePath("/todos");
   redirect("/todos");
 }
+
+export async function toggleTodoAction(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const completed = formData.get("completed") === "true";
+  await updateTodo(id, { completed });
+  revalidatePath("/todos");
+}
