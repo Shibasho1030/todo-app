@@ -9,7 +9,7 @@ type TodoProps = {
 function TodosItem({ todo }: TodoProps) {
   return (
     <li className="rounded mb-5 border p-3 flex md:gap-10 items-center justify-between">
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-5 items-center">
         <form action={toggleTodoAction}>
           <input type="hidden" name="id" value={todo.id} />
           <input

@@ -1,5 +1,6 @@
 import { createTodoAction } from "@/_lib/actions";
 import { requireAuth } from "@/_lib/requireAuth";
+import Link from "next/link";
 
 async function Page() {
   await requireAuth();
@@ -37,12 +38,20 @@ async function Page() {
           className="w-full rounded border px-3 py-2"
         />
 
-        <button
-          type="submit"
-          className="rounded border block px-3 py-2 text-[#DDE6ED] bg-[#27374D] hover:bg-[#526D82]"
-        >
-          追加
-        </button>
+        <div className="space-x-2">
+          <button
+            type="submit"
+            className="rounded border px-3 py-2 text-[#DDE6ED] bg-[#27374D] hover:bg-[#526D82]"
+          >
+            追加
+          </button>
+          <Link
+            href={`/todos`}
+            className="border px-3 py-2 mt-4 rounded hover:bg-[#9DB2BF]"
+          >
+            戻る
+          </Link>
+        </div>
       </form>
     </div>
   );

@@ -8,10 +8,23 @@ export const metadata = {
   title: "Todos",
 };
 
-async function Page() {
+async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ completed?: string }>;
+}) {
   await requireAuth();
   const todos = await getTodos();
-  return <TodosList todos={todos} />;
+
+  const { completed = "all" } = await searchParams;
+  const filteredTodos =
+    completed === "true"
+      ? todos.filter((todo) => todo.completed)
+      : completed === "false"
+        ? todos.filter((todo) => !todo.completed)
+        : todos;
+
+  return <TodosList todos={filteredTodos} />;
 }
 
 export default Page;
