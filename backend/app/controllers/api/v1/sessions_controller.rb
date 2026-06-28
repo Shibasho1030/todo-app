@@ -12,6 +12,7 @@ class Api::V1::SessionsController < ApplicationController
         email: user.email
       }, status: :ok
     else
+                                                                      # HTTPステータスコード 401
       render json: { error: 'メールアドレスまたはパスワードが違います' }, status: :unauthorized
     end
   end

@@ -1,4 +1,5 @@
-/*import { User } from "@/helper/types";
+/* Next.jsサーバー側からRailsAPIを叩くだけだと、Railsが返したSet-Cookieが自動でブラウザまで届かないため
+import { User } from "@/helper/types";
 import { API_BASE_URL } from "./apiConfig";
 import { cookies } from "next/headers";
 
@@ -14,7 +15,7 @@ export async function login(params: LoginParams): Promise<User> {
     headers: {
       "Content-Type": "application/json",
       Cookie: cookieStore.toString(),
-    },
+    },  
     // credentials: "include",
     body: JSON.stringify({
       email: params.email,

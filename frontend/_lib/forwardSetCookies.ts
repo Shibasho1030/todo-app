@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+// RailsAPIから返ってきたSet-Cookieを、Next.jsのレスポンスに付け替えて、ブラウザに渡すための関数
 export function forwardSetCookies(
   upstream: Response,
   downstream: NextResponse,

@@ -30,7 +30,7 @@ function TodosItem({ todo }: TodoProps) {
         </Link>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 shrink-0">
         <Link
           href={`/todos/${todo.id}`}
           className="rounded bg-sky-500 px-2 py-1 md:px-4 md:py-2 text-sm font-bold text-[#DDE6ED] hover:bg-sky-600 cursor-pointer"

@@ -68,7 +68,9 @@ export async function createTodo(params: CreateTodoParams): Promise<Todo> {
   const data = await res.json();
 
   if (!res.ok)
-    throw new Error(data.errors?.join(", ") ?? "Todo作成に失敗しました。");
+    throw new Error(
+      data.errors?.join(", ") || data.error || "Todo作成に失敗しました",
+    );
 
   return data;
 }
@@ -97,7 +99,9 @@ export async function updateTodo(
   const data = await res.json();
 
   if (!res.ok)
-    throw new Error(data.errors?.join(", ") ?? "Todo更新に失敗しました。");
+    throw new Error(
+      data.errors?.join(", ") || data.error || "Todo更新に失敗しました",
+    );
 
   return data;
 }

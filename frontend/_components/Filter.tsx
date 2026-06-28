@@ -25,7 +25,7 @@ function Filter() {
         handleFilter={handleFilter}
         activeFilter={activeFilter}
       >
-        全て
+        全件
       </Button>
       <Button
         filter="true"
@@ -47,8 +47,8 @@ function Filter() {
 
 type ButtonProps = {
   filter: FilterValue;
-  activeFilter: string;
   handleFilter: (filter: FilterValue) => void;
+  activeFilter: string;
   children: ReactNode;
 };
 

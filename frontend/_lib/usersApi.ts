@@ -1,4 +1,5 @@
-/*import { User } from "@/helper/types";
+/* Next.jsサーバー側からRailsAPIを叩くだけだと、Railsが返したSet-Cookieが自動でブラウザまで届かないため
+import { User } from "@/helper/types";
 import { API_BASE_URL } from "./apiConfig";
 import { cookies } from "next/headers";
 
@@ -57,9 +58,11 @@ type SignupParams = {
 export async function signup(params: SignupParams): Promise<User> {
   const res = await fetch("/api/users", {
     method: "POST",
+    // 今から送るbodyはJSON形式だとRailsに伝えるためのもの
     headers: {
       "Content-Type": "application/json",
     },
+    // ブラウザがRailsのセッションCookieを一緒に送り,signup()でもログイン中ユーザーを判定できる
     credentials: "include",
     body: JSON.stringify({
       name: params.name,
