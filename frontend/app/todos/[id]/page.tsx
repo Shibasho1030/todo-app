@@ -16,7 +16,7 @@ async function Page({ params }: { params: Promise<{ id: string }> }) {
       </Link>
 
       <div className="flex">
-        <Link href={`/todos/${id}/edit`} className="cursor-pointer">
+        <Link href={`/todos/${id}/edit`} className="cursor-pointer shrink-0">
           本文：
         </Link>
         <Link

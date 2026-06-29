@@ -56,7 +56,7 @@ function Header({ name }: { name: string | undefined }) {
           {name ? (
             <button
               onClick={handleLogout}
-              className="font-semibold cursor-pointer"
+              className="font-semibold cursor-pointer shrink-0"
             >
               ログアウト
             </button>
