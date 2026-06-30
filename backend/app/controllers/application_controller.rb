@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  # rescue_from A, with: :B => A(データが見つからない)のエラーが発生したら、Bを実行する
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   private

@@ -2,6 +2,7 @@ class Api::V1::SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email].to_s.downcase)
 
+    # find_byは見つからない場合、nilが返る。例外は発生しない。
     if user && user.authenticate(params[:password])
       reset_session
       session[:user_id] = user.id
